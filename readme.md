@@ -1,4 +1,3 @@
-````markdown
 # 🌦️ GDASH Weather Monitor 2025
 
 ![Arquitetura](https://img.shields.io/badge/Arquitetura-EDA-blue)
@@ -52,7 +51,6 @@ graph LR
     style D fill:#e0234e,color:#fff
     style E fill:#47a248,color:#fff
     style F fill:#61dafb,color:#000
-````
 
 ---
 
