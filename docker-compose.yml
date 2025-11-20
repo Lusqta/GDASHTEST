@@ -1,0 +1,32 @@
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: gdash_mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/db:/data/db
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: gdash_rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
+  weather-collector:
+      build: ./weather-collector
+      container_name: gdash_python
+      depends_on:
+        - rabbitmq
+      restart: always
+
+  queue-worker:
+    build: ./queue-worker
+    container_name: gdash_go
+    depends_on:
+      - rabbitmq
+    restart: always
