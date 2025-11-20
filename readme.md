@@ -1,13 +1,42 @@
 ````markdown
 # 🌦️ GDASH Weather Monitor 2025
 
-> Solução Full-Stack Distribuída para Monitoramento Climático e Análise de Dados via IA.
+![Arquitetura](https://img.shields.io/badge/Arquitetura-EDA-blue)
+![Stack](https://img.shields.io/badge/Stack-Full--Stack-purple)
+![IA](https://img.shields.io/badge/Feature-IA-green)
+![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-orange)
+![License](https://img.shields.io/badge/Licen%C3%A7a-MIT-green)
 
-Este repositório contém a implementação completa do desafio técnico GDASH 2025/02. O sistema utiliza uma **Arquitetura Orientada a Eventos (EDA)** para garantir alta disponibilidade, resiliência e desacoplamento entre a coleta, processamento e exibição de dados meteorológicos.
+---
+
+Solução **Full-Stack Distribuída para Monitoramento Climático e Análise de Dados via IA**, desenvolvida para o desafio técnico **GDASH 2025/02**.
+
+O sistema utiliza uma **Arquitetura Orientada a Eventos (EDA)** para garantir:
+
+- Alta disponibilidade  
+- Resiliência  
+- Escalabilidade  
+- Desacoplamento entre serviços  
+
+Toda comunicação entre os módulos ocorre via mensageria.
+
+---
+
+## 🚀 Proposta do Sistema
+
+Este projeto tem como objetivo criar um ecossistema distribuído e escalável para **monitoramento climático em tempo real**, integrando:
+
+- Coleta automatizada de dados meteorológicos  
+- Processamento assíncrono via mensageria  
+- Persistência em banco NoSQL  
+- Visualização em dashboard web  
+- Análise com suporte de IA  
+
+---
 
 ## 🏛️ Arquitetura da Solução
 
-O sistema foi desenhado para suportar picos de carga e garantir a integridade dos dados através de filas de mensagens.
+A arquitetura foi desenhada para suportar **picos de carga** e garantir a **integridade dos dados meteorológicos**.
 
 ```mermaid
 graph LR
@@ -25,61 +54,69 @@ graph LR
     style F fill:#61dafb,color:#000
 ````
 
-### Fluxo de Dados
+---
 
-1.  **Coleta (Python):** Busca dados meteorológicos (Open-Meteo) periodicamente e publica na fila.
-2.  **Mensageria (RabbitMQ):** Garante a persistência e entrega assíncrona das mensagens.
-3.  **Processamento (Go):** Worker de alta performance consome a fila e normaliza os dados.
-4.  **Core (NestJS):** Gerencia regras de negócio, autenticação (JWT), persistência e insights de IA.
-5.  **Apresentação (React):** Dashboard interativo com gráficos, alertas e exportação de dados.
+## 🧩 Componentes do Sistema
 
-## 🛠️ Stack Tecnológica
+| Serviço                 | Função                                 |
+| ----------------------- | -------------------------------------- |
+| --------                | --------                               |
+| 🐍 **Python Collector** | Coleta dados climáticos em tempo real  |
+| 🐰 **RabbitMQ**         | Gerencia a troca de mensagens          |
+| 🐹 **Go Worker**        | Processa, valida e normaliza os dados  |
+| 🦁 **NestJS API**       | API principal e camada de persistência |
+| 🍃 **MongoDB**          | Banco de dados NoSQL                   |
+| ⚛️ **React Dashboard**  | Interface visual para monitoramento    |
 
-| Camada | Tecnologias |
-| :--- | :--- |
-| **Frontend** | React, Vite, TailwindCSS, shadcn/ui, Lucide Icons |
-| **Backend** | NestJS, TypeScript, Mongoose, JWT |
-| **Worker** | Golang 1.24, AMQP |
-| **Ingestão** | Python 3.14, Requests, Pika |
-| **Banco de Dados** | MongoDB (NoSQL) |
-| **Infraestrutura** | Docker, Docker Compose |
+---
 
-## ✨ Funcionalidades Principais
+## 📘 Fundamentos e Padrões Utilizados
 
-  * ✅ **Monitoramento em Tempo Real:** Exibição de temperatura, umidade e vento com atualização automática.
-  * ✅ **Insights de IA:** Análise automática de tendências climáticas e alertas.
-  * ✅ **Gestão de Usuários:** Sistema de login seguro e CRUD de usuários.
-  * ✅ **Exportação de Dados:** Geração de relatórios em CSV e XLSX.
-  * ✅ **Resiliência:** Sistema de retry automático no Worker Go e DLQ no RabbitMQ.
+O projeto aplica conceitos modernos de arquitetura e desenvolvimento:
 
-## 📂 Estrutura do Projeto
+* Arquitetura Orientada a Eventos (EDA)
+* Microserviços desacoplados
+* Comunicação assíncrona via Message Broker
+* API RESTful
+* Armazenamento NoSQL (MongoDB)
+* Processamento distribuído de dados
+* Integração com IA para análise climática
 
-```bash
-/
-├── backend/            # API NestJS (Core do sistema)
-├── frontend/           # Aplicação React (Dashboard)
-├── queue-worker/       # Microsserviço em Go (Consumidor)
-├── weather-collector/  # Script Python (Produtor)
-└── docker-compose.yml  # Orquestração completa
+---
+
+## 🛠️ Tecnologias
+
+* **Python**
+* **Go**
+* **NestJS**
+* **React**
+* **RabbitMQ**
+* **MongoDB**
+
+---
+
+## 📂 Estrutura Geral
+
+```text
+📁 gdash-weather-monitor
+├── collector-python        # Serviço de coleta
+├── worker-go               # Serviço de processamento
+├── api-nestjs              # Backend principal
+├── dashboard-react         # Frontend web
+├── docker-compose.yml      # Orquestração dos serviços
+└── README.md
 ```
 
-## 🚀 Execução
+---
 
-Todo o ambiente é conteinerizado. Para subir a stack completa:
+## 🎓 Contexto
 
-```bash
-docker-compose up -d
-```
+Este sistema foi desenvolvido para o desafio técnico:
 
-### Acessos
+> **GDASH 2025/02**
+> Monitoramento Climático + Análise via IA
+> Arquitetura distribuída, escalável e resiliente
 
-  * **Dashboard:** `http://localhost:5173`
-  * **API:** `http://localhost:3000`
-  * **RabbitMQ Manager:** `http://localhost:15672`
+---
 
------
-
-*Projeto desenvolvido para o Processo Seletivo GDASH 2025/02.*
-
-```
 ```
