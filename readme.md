@@ -51,6 +51,7 @@ graph LR
     style D fill:#e0234e,color:#fff
     style E fill:#47a248,color:#fff
     style F fill:#61dafb,color:#000
+```
 
 ---
 
@@ -103,7 +104,6 @@ O projeto aplica conceitos modernos de arquitetura e desenvolvimento:
 ├── dashboard-react         # Frontend web
 ├── docker-compose.yml      # Orquestração dos serviços
 └── README.md
-```
 
 ---
 
@@ -116,5 +116,3 @@ Este sistema foi desenvolvido para o desafio técnico:
 > Arquitetura distribuída, escalável e resiliente
 
 ---
-
-```
